@@ -11,16 +11,24 @@ class Priority(BaseModel):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name = "Priority"
+        verbose_name_plural = "Priorities"
+
     def __str__(self):
         return self.name
+
 
 class Category(BaseModel):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
-
 
 class Task(BaseModel):
     id = models.AutoField(primary_key=True)
