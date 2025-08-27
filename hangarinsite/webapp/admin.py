@@ -30,7 +30,7 @@ class SubTaskAdmin(admin.ModelAdmin):
         try:
             member = SubTask.objects.get(id=obj.parent_task_id)
             return member.title  #need fixing
-        except Student.DoesNotExist:
+        except title.DoesNotExist:
             return None
 
 @admin.register(Category)
