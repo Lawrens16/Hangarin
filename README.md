@@ -28,7 +28,8 @@ It uses **Python-Django** as its backend framework and is deployed on **PythonAn
 <br>
 
 # Deployment
-This project is deployed on [PythonAnywhere]([https://www.pythonanywhere.com](https://lawrens16.pythonanywhere.com/).  
+This project is deployed on [PythonAnywhere](https://lawrens16.pythonanywhere.com/).  
+
 
 <br>
 
