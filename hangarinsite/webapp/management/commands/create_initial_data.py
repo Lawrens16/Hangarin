@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+.sfrom django.core.management.base import BaseCommand
 from faker import Faker
 from django.utils import timezone
 from webapp.models import Category, Priority, Task, SubTask, Note
