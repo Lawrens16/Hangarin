@@ -6,8 +6,8 @@ from webapp.models import Task, Category, Priority, Note, SubTask
 from webapp.forms import TaskForm, CategoryForm, PriorityForm, NoteForm, SubTaskForm
 
 
-def index(request):
-    return render(request, "index.html")
+#def index(request):
+ #   return render(request, "index.html")
 
 def dashboard(request):
     return render(request, "dashboard.html")
