@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+  <div class="container-fluid">   
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="page-title m-0">🗑️ Delete Note</h4>
+      <a href="{% url 'note-list' %}" class="btn btn-secondary shadow-sm">
+        <i class="ti ti-arrow-left"></i> Back to List
+      </a>
+    </div>
+    <div class="card shadow-sm border-0 rounded-3">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Are you sure you want to delete this note?</h5>
+        <p class="card-text"><strong>Task:</strong> {{ object.task }}</p>
+        <p class="card-text"><strong>Content:</strong> {{ object.content }}</p>
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-rounded px-4">Delete</button>
+          <a href="{% url 'note-list' %}" class="btn btn-secondary btn-rounded px-4">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
