@@ -4,13 +4,21 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from webapp.models import Task, Category, Priority, Note, SubTask
 from webapp.forms import TaskForm, CategoryForm, PriorityForm, NoteForm, SubTaskForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #def index(request):
  #   return render(request, "index.html")
 
+class HomePageView(LoginRequiredMixin, ListView):
+    model = Category
+    context_object_name = 'dashboard'
+    template_name = "dashboard.html"
+
 def dashboard(request):
     return render(request, "dashboard.html")
+
+def login(request):
+    return render(request, "account/login.html")
 
 class CategoryList(ListView):
     model = Category

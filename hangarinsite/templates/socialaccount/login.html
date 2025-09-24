@@ -1,0 +1,96 @@
+{% load i18n %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Hangarin | Confirm Google Login</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/logos/favicon.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+    }
+
+    .auth-card {
+      max-width: 480px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .auth-card h3 {
+      font-weight: 600;
+      color: #343a40;
+      margin-bottom: 1rem;
+    }
+
+    .auth-card p {
+      color: #6c757d;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-hangarin {
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-hangarin:hover {
+      background-color: #9cc6f0;
+    }
+
+    .btn-outline-hangarin {
+      border: 2px solid #007bff;
+      color: #007bff;
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline-hangarin:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .logo {
+      width: 140px;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-card">
+    <img src="{% static 'images/logos/Logo.svg' %}" alt="Hangarin Logo" class="logo" />
+    <h3>Confirm Sign In</h3>
+    <p>You’re about to sign in using your <strong>{{ provider.name }}</strong> account.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-hangarin w-100 mb-3">
+        <i class="fab fa-{{ provider.id|default:'google' }} me-2"></i>
+        Continue with {{ provider.name }}
+      </button>
+    </form>
+
+    <a href="{% url 'account_login' %}" class="btn btn-outline-hangarin w-100">
+      Cancel
+    </a>
+  </div>
+</body>
+</html>

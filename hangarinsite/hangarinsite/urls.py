@@ -21,7 +21,9 @@ from webapp.views import CategoryList, CategoryCreateView, CategoryUpdateView, C
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.dashboard, name='dashboard'),  
+    path('', views.HomePageView.as_view(), name='home'),
+    path('accounts/login', views.login, name='login'),
+    path('dashboard/', views.dashboard, name='dashboard'),
   #  path("index/", views.index, name="index"),
     path('category_list', CategoryList.as_view(), name='category-list'),
     path('category_list/add', CategoryCreateView.as_view(), name='category-add'),
@@ -43,4 +45,5 @@ urlpatterns = [
     path('note_list/add', views.NoteCreateView.as_view(), name='note-add'),
     path("note_list/<pk>", views.NoteUpdateView.as_view(), name='note-update'),
     path('note_list/<pk>/delete', views.NoteDeleteView.as_view(), name='note-delete'),
+    path("accounts/", include("allauth.urls")), # allauth routes
 ]
