@@ -17,13 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from webapp import views 
-from webapp.views import CategoryList, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, PriorityList, PriorityCreateView, PriorityUpdateView, PriorityDeleteView, TaskList, TaskCreateView, TaskUpdateView, TaskDeleteView, SubTaskList, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView, NoteList, NoteCreateView, NoteUpdateView, NoteDeleteView
+from webapp.views import CategoryList, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, PriorityList, PriorityCreateView, PriorityUpdateView, PriorityDeleteView, TaskList, TaskCreateView, TaskUpdateView, TaskDeleteView, SubTaskList, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView, NoteList, NoteCreateView, NoteUpdateView, NoteDeleteView, SignUpView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('', views.HomePageView.as_view(), name='home'),
-    path('accounts/login', views.login, name='login'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('accounts/', include('allauth.urls')), 
   #  path("index/", views.index, name="index"),
     path('category_list', CategoryList.as_view(), name='category-list'),
     path('category_list/add', CategoryCreateView.as_view(), name='category-add'),

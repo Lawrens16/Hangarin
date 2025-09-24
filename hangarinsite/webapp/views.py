@@ -5,9 +5,16 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from webapp.models import Task, Category, Priority, Note, SubTask
 from webapp.forms import TaskForm, CategoryForm, PriorityForm, NoteForm, SubTaskForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 
 #def index(request):
  #   return render(request, "index.html")
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = "account/register.html"  # your template path
+    success_url = reverse_lazy('account_login')  
+
 
 class HomePageView(LoginRequiredMixin, ListView):
     model = Category
@@ -17,8 +24,6 @@ class HomePageView(LoginRequiredMixin, ListView):
 def dashboard(request):
     return render(request, "dashboard.html")
 
-def login(request):
-    return render(request, "account/login.html")
 
 class CategoryList(ListView):
     model = Category
