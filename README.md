@@ -10,7 +10,8 @@ It uses **Python-Django** as its backend framework and is deployed on **PythonAn
 # Tech stack and dependencies used in this project:
 - Python  
 - Django (requires Python to be installed)  
-- Faker (for generating fake seed data)  
+- Faker (for generating fake seed data)
+- Javascript
 <br>
 
 # Features in this website:
