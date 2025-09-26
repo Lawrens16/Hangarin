@@ -1,20 +1,25 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hangarin</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
   <link rel="shortcut icon" type="image/png" href="{% static 'images/logos/favicon.png' %}" />
   <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+  <style>
+    /* Prevent navbar overlap */
+    .body-wrapper {
+      padding-top: 20px; /* adjust if your navbar is taller */
+    }
+  </style>
 </head>
 
 <body>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
+    data-sidebar-position="static" data-header-position="static">
     <!-- Sidebar Start -->
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
@@ -86,7 +91,6 @@
                 <span class="hide-menu">Note</span>
               </a>
             </li>
-
           </ul>
           
         </nav>
@@ -116,27 +120,108 @@
                   <img src="{% static 'images/profile/face.jpg' %}" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                  <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <div class="message-body p-2">
+
+                    <!-- User info -->
+                    <div class="dropdown-item-text fw-bold">
+                      {{ request.user.username }}
+                    </div>
+                    <div class="dropdown-item-text text-muted small mb-2">
+                      {% if request.user.is_superuser %}
+                        Administrator
+                      {% else %}
+                        Regular User
+                      {% endif %}
+                    </div>
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Profile -->
+                    <a href="#profile" class="dropdown-item d-flex align-items-center gap-2">
                       <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
+                      <span>My Profile</span>
                     </a>
-                    <a href="{% url 'admin:index' %}" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">Admin</p>
+
+                    <!-- Admin panel (only show if superuser) -->
+                    {% if request.user.is_superuser %}
+                      <a href="{% url 'admin:index' %}" class="dropdown-item d-flex align-items-center gap-2">
+                        <i class="ti ti-settings fs-6"></i>
+                        <span>Admin Panel</span>
+                      </a>
+                    {% endif %}
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Logout -->
+                    <a href="{% url 'account_logout' %}" class="dropdown-item text-danger d-flex align-items-center gap-2">
+                      <i class="ti ti-logout fs-6"></i>
+                      <span>Logout</span>
                     </a>
-                    <a href="{% url 'account_logout' %}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>
             </ul>
-          </div>
+          </div>  
         </nav>
       </header>
       <!--  Header End -->
       <!-- Main Page Content -->
       <div class="container-fluid">
-        <h1>This is dashboard</h1>
+        {% block content %}
+                        <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
+                        <h4 class="fw-semibold mb-3">$6,820</h4>
+                        <div class="d-flex align-items-center pb-1">
+                          <span
+                            class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-arrow-down-right text-danger"></i>
+                          </span>
+                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                          <p class="fs-3 mb-0">last year</p>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                          <div
+                            class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-currency-dollar fs-6"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="earning"></div>
+                </div>
+                                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> What the Earnings </h5>
+                        <h4 class="fw-semibold mb-3">$6,820</h4>
+                        <div class="d-flex align-items-center pb-1">
+                          <span
+                            class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-arrow-down-right text-danger"></i>
+                          </span>
+                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                          <p class="fs-3 mb-0">last year</p>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                          <div
+                            class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-currency-dollar fs-6"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="earning"></div>
+                </div>
+        {% endblock %}
       </div>
     </div>
   </div>
