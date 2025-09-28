@@ -22,7 +22,7 @@ from webapp.views import CategoryList, CategoryCreateView, CategoryUpdateView, C
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', views.HomePageView.as_view(), name='home'),
-    path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/', views.HomePageView.as_view(), name='dashboard'),
     path('accounts/', include('allauth.urls')), 
   #  path("index/", views.index, name="index"),
     path('category_list', CategoryList.as_view(), name='category-list'),

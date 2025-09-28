@@ -17,13 +17,21 @@ class SignUpView(CreateView):
 
 
 class HomePageView(LoginRequiredMixin, ListView):
-    model = Category
+    model = Task
     context_object_name = 'dashboard'
     template_name = "dashboard.html"
+    paginate_by = 3 
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["total_tasks"] = Task.objects.count()
+        context["total_categories"] = Category.objects.count()
+        context["total_priorities"] = Priority.objects.count()
+        context["total_notes"] = Note.objects.count()
+        return context
 
-def dashboard(request):
-    return render(request, "dashboard.html")
-
+    def get_queryset(self):
+        return Task.objects.order_by('-id')  
 
 class CategoryList(ListView):
     model = Category
