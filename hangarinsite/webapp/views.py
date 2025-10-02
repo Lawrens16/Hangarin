@@ -28,6 +28,7 @@ class HomePageView(LoginRequiredMixin, ListView):
         context["total_categories"] = Category.objects.count()
         context["total_priorities"] = Priority.objects.count()
         context["total_notes"] = Note.objects.count()
+        context["total_subtasks"] = SubTask.objects.count()
         return context
 
     def get_queryset(self):
