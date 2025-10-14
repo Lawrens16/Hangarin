@@ -102,21 +102,28 @@ class TaskList(ListView):
     template_name = 'task_list.html'
     paginate_by = 5
 
+
     def get_queryset(self):
         queryset = super().get_queryset()
         q = self.request.GET.get('q')
+        sort = self.request.GET.get('sort')  # <-- added sorting parameter
+
+        # Filtering logic
         if q:
-            queryset = queryset.filter(
-                title__icontains=q
-            ) | queryset.filter(
-                status__icontains=q
-            ) | queryset.filter(
-                deadline__icontains=q
-            ) | queryset.filter(
-                priority__name__icontains=q
-            ) | queryset.filter(
-                category__name__icontains=q
+            queryset = (
+                queryset.filter(title__icontains=q)
+                | queryset.filter(status__icontains=q)
+                | queryset.filter(deadline__icontains=q)
+                | queryset.filter(priority__name__icontains=q)
+                | queryset.filter(category__name__icontains=q)
             )
+
+        # Sorting logic
+        if sort == "deadline":
+            queryset = queryset.order_by("deadline")
+        elif sort == "-deadline":
+            queryset = queryset.order_by("-deadline")
+
         return queryset
 
 class TaskCreateView(CreateView):

@@ -4,24 +4,24 @@
 <div class="content">
   <div class="container-fluid">   
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h4 class="page-title m-0">📝 Notes</h4>
-      <a href="{% url 'note-add' %}" class="btn btn-primary shadow-sm" style="background-color: #6686F7;">
-        <i class="ti ti-plus"></i> Add Note
+      <h4 class="page-title m-0">📑 Subtasks</h4>
+      <a href="{% url 'subtask-add' %}" class="btn btn-primary shadow-sm" style="background-color: #6686F7;">
+        <i class="ti ti-plus"></i> Add Subtask
       </a>
     </div>
     <div class="card shadow-sm border-0 rounded-3">
       <div class="card-header bg-light border-0">
-        <h5 class="card-title mb-1">List of Notes</h5>
+        <h5 class="card-title mb-1">List of Subtasks</h5>
         <p class="card-subtitle text-muted small">
-          Manage your available notes here. You can search, edit, or delete notes anytime.
+          Manage your available subtasks here. You can search, edit, or delete subtasks anytime.
         </p>
       </div>
       <div class="card-body">
         <div class="row align-items-center mb-3">
           <div class="col-md-6 mb-2 mb-md-0">
-            <form action="{% url 'note-list' %}" method="get">
+            <form action="{% url 'subtask-list' %}" method="get">
               <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="🔍 Search notes..."
+                <input type="text" name="q" class="form-control" placeholder="🔍 Search subtasks..."
                        value="{{ request.GET.q }}">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
               </div>
@@ -35,7 +35,7 @@
               <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Status</th>
-                <th scope="col">Parent task</th>
+                <th scope="col">Parent Task</th>
                 <th scope="col" class="text-end">Action</th>
               </tr>
             </thead>
@@ -44,7 +44,7 @@
               <tr>
                 <td>{{ object.title }}</td>
                 <td>{{ object.status }}</td>
-                <td>{{ object.parent_task}}</td>
+                <td>{{ object.parent_task }}</td>
                 <td class="text-end">
                   <a href="subtask_list/{{ object.id }}" class="btn btn-sm btn-outline-primary me-2">
                     <i class="ti ti-edit"></i> Edit
@@ -57,7 +57,7 @@
               {% empty %}
               <tr>
                 <td colspan="4" class="text-center text-muted py-4">
-                  <i class="ti ti-info-circle"></i> No notes found
+                  <i class="ti ti-info-circle"></i> No subtasks found
                 </td>
               </tr>
               {% endfor %}
