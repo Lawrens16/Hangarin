@@ -20,10 +20,15 @@ from webapp import views
 from webapp.views import CategoryList, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, PriorityList, PriorityCreateView, PriorityUpdateView, PriorityDeleteView, TaskList, TaskCreateView, TaskUpdateView, TaskDeleteView, SubTaskList, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView, NoteList, NoteCreateView, NoteUpdateView, NoteDeleteView, SignUpView
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls, name='admin'),
-    path('', views.HomePageView.as_view(), name='home'),
-    path('dashboard/', views.HomePageView.as_view(), name='dashboard'),
+      path('', include('pwa.urls')),
     path('accounts/', include('allauth.urls')), 
+     path('', views.HomePageView.as_view(), name='home'),
+    path('dashboard/', views.HomePageView.as_view(), name='dashboard'),
+    
+  
+   
   #  path("index/", views.index, name="index"),
     path('category_list', CategoryList.as_view(), name='category-list'),
     path('category_list/add', CategoryCreateView.as_view(), name='category-add'),
@@ -45,5 +50,5 @@ urlpatterns = [
     path('note_list/add', views.NoteCreateView.as_view(), name='note-add'),
     path("note_list/<pk>", views.NoteUpdateView.as_view(), name='note-update'),
     path('note_list/<pk>/delete', views.NoteDeleteView.as_view(), name='note-delete'),
-    path("accounts/", include("allauth.urls")), # allauth routes
+
 ]
