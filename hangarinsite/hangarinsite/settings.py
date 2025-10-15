@@ -192,5 +192,21 @@ PWA_APP_ICONS_APPLE = [
 'sizes': '512x512'
 }
 ]
+
+PWA_APP_SCREENSHOTS = [
+    {
+        'src': '/static/images/screenshots/desktop-screenshot.png',
+        'sizes': '1280x720',
+        'type': 'image/png',
+        'form_factor': 'wide'  # for desktop
+    },
+    {
+        'src': '/static/images/screenshots/mobile-screenshot.png',
+        'sizes': '750x1334',
+        'type': 'image/png',
+        'form_factor': 'narrow'  # for mobile
+    }
+
+]
 PWA_APP_DIR = 'ltr'
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
