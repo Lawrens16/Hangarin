@@ -34,6 +34,6 @@ This project is deployed on [PythonAnywhere](https://lawrens16.pythonanywhere.co
 
 <br>
 
-# Authors of this:
+# Author of this:
 - Lawrence Magnetico (Developer)  
 
